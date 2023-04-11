@@ -1,8 +1,16 @@
+import { Snake } from "./models/snake.model.js";
+import { Comida } from "./models/comida.model.js";
+
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+
+const snake = new Snake({ x: 10, y: 10 });
+console.log(snake);
+const comida = new Comida({ x: 5, y: 5 });
+
 //audio
-const gulpSound = new Audio('gulp.mp3')
+const gulpSound = new Audio('./sound/gulp.mp3')
 
 //Donde se guardara las partes de la vibora
 const snakeParts = [];
@@ -42,8 +50,8 @@ let monsterY = 3;
 
 
 //velocidad de la serpiente
-velocidadX = 0;
-velocidadY = 0;
+let velocidadX = 0;
+let velocidadY = 0;
 
 
 
@@ -95,7 +103,8 @@ function drawGame (){
     //pantalla del juego
     clearScreen();
     
-    checkColisionApple();
+    //checkColisionApple();
+    snake.ChequearColisionComida(comida);
     drawApple();
     drawSnake(); 
     drawMonster();
