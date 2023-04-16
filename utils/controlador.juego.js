@@ -1,31 +1,30 @@
 import { Mapa } from "../models/mapa.class.js";
 import { Snake } from "../models/snake.model.js";
-import { canvas, ctx } from "../utils/canvas.info.js";
 // import { Teclado } from "../utils/teclado.utils.js";
-
-const anchoTile = canvas.width / Mapa.ancho;
-const altoTile = canvas.width / Mapa.alto;
+import { PrecargarImagenes } from "../images/images-manager.js";
 
 
-const mapa = new Mapa();
-const snake = new Snake();
+/** @type {Mapa} */
+let mapa = null;
+/** @type {Snake} */
+let snake = null;
 
-const IniciarJuego = () => {
+const IniciarJuego = async () => {
+    await PrecargarImagenes();
+
+    mapa = new Mapa();
+    snake = new Snake();
+
     mapa.Iniciar();
 
     LoopJuego();
 };
 
-//pantalla del juego
-const LimpiarPantalla = () => {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
 
 const Dibujar = () => {
-    LimpiarPantalla();
-
-    snake.Dibujar({ ctx, anchoTile, altoTile });
+    mapa.LimpiarPantalla();
+    mapa.Dibujar();
+    snake.Dibujar();
 };
 
 const Actualizar = () => {

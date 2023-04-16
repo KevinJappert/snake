@@ -1,6 +1,7 @@
 import { Tile } from "./tile.class.js";
 import { Mapa } from "./mapa.class.js";
 import { Direction } from "../enums/direction.enum.js";
+import { ctx } from "../utils/canvas.info.js";
 
 class Snake {
     /** @type {Tile[]} */
@@ -21,18 +22,18 @@ class Snake {
         return this.cuerpo.length + 1;
     };
 
-    Dibujar({ ctx, anchoTile, altoTile }) {
+    Dibujar() {
         //Dibujo cuerpo
         ctx.fillStyle = '#999';
         for (let i = 1; i < this.cuerpo.length; i++) {
             const parteCuerpo = this.cuerpo[i];
-            ctx.fillRect(parteCuerpo.position.x * parteCuerpo.size.x, parteCuerpo.position.y * parteCuerpo.size.y, anchoTile, altoTile);
+            ctx.fillRect(parteCuerpo.position.x * parteCuerpo.size.x, parteCuerpo.position.y * parteCuerpo.size.y, Mapa.anchoTile, Mapa.altoTile);
         }
 
         // Dibujo cabeza
         ctx.fillStyle = '#FFF';
         const cabeza = this.cuerpo[0];
-        ctx.fillRect(cabeza.position.x * cabeza.size.x, cabeza.position.y * cabeza.size.y, anchoTile, altoTile);
+        ctx.fillRect(cabeza.position.x * cabeza.size.x, cabeza.position.y * cabeza.size.y, Mapa.anchoTile, Mapa.altoTile);
     };
 
     Mover() {

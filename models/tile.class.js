@@ -1,7 +1,5 @@
 import { canvas, ctx } from "../utils/canvas.info.js";
 import { Mapa } from "../models/mapa.class.js";
-const anchoTile = canvas.width / Mapa.ancho;
-const altoTile = canvas.width / Mapa.alto;
 
 class Tile {
     position = {
@@ -9,8 +7,8 @@ class Tile {
         y: 0
     };
     size = {
-        x: anchoTile, 
-        y: altoTile
+        x: Mapa.anchoTile, 
+        y: Mapa.altoTile
     };
     constructor({ x, y }) {
         this.position.x = x;
